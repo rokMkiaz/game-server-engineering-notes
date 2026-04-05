@@ -809,7 +809,7 @@ exit /b
 
 
 ### 4. Unit 추적 툴
-게임서버 Unit들을 추적하고 해당 객체가 하는 행동을 추적하기 위한 툴. imgui를 활용하여 만들었다.
+게임서버 Unit들을 추적하고 해당 객체가 하는 행동을 추적하기 위한 툴. imgui 라이브러리를 활용하여 다른 스래드에서 시각화 하였다.
 
 <img width="640" height="382" alt="image" src="https://github.com/user-attachments/assets/4c118645-7903-41ab-8dcd-917a44219389" />
 
