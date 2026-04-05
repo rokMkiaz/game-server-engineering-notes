@@ -108,6 +108,7 @@ namespace ProbabilityChecker
 기획자들의 실수를 줄여줄 툴을 만들었다. 실제로 액셀에 있는 기능이지만, 여전히 .csv만 다뤄 힘든 팀원들을 위하여 만들어주었다.
 
 <img width="581" height="468" alt="image" src="https://github.com/user-attachments/assets/dfe69039-3356-45cd-aeb1-f0a0a9fef126" />
+
 교육방식은 위와 같다
 코드 초안은 아래와 같지만, 아직 많이 부족하였다.
 
