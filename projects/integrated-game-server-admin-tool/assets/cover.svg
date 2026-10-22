@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="t d">
+<title id="t">Game Server Operations Console</title><desc id="d">Dark console-themed engineering project banner</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1726"/><stop offset="1" stop-color="#132b38"/></linearGradient><pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#39556c" opacity=".18"/></pattern></defs>
+<rect width="1200" height="320" rx="18" fill="url(#bg)"/><rect width="1200" height="320" rx="18" fill="url(#g)"/>
+<circle cx="1108" cy="0" r="190" fill="#155666" opacity=".18"/>
+<rect x="48" y="57" width="173" height="28" rx="14" fill="#16403c" stroke="#2d8376"/>
+<text x="134" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#a8f0df">ENGINEERING CASE STUDY</text>
+<text x="47" y="151" font-family="Arial,sans-serif" font-size="52" font-weight="800" fill="#f0f6fd">GAME SERVER</text>
+<text x="47" y="204" font-family="Arial,sans-serif" font-size="43" font-weight="800" fill="#6ee2d0">OPERATIONS CONSOLE</text>
+<rect x="48" y="221" width="79" height="4" rx="2" fill="#45d2bf"/>
+<text x="47" y="269" font-family="Consolas,monospace" font-size="16" fill="#b1c6d4">PYTHON  /  FLASK  /  SQL SERVER  /  MONGODB</text>
+<g font-family="Arial,sans-serif" text-anchor="middle">
+<rect x="783" y="91" width="234" height="68" rx="13" fill="#16433f" stroke="#4bdbc6" stroke-width="2"/>
+<circle cx="807" cy="113" r="6" fill="#49d5c1"/><text x="910" y="129" fill="#e9f9f7" font-size="18" font-weight="700">ADMIN CONSOLE</text>
+<path d="M900 159V177M694 177H1102M694 177V195M824 177V195M956 177V195M1102 177V195" fill="none" stroke="#52bdb9" stroke-width="2"/>
+<rect x="642" y="195" width="104" height="65" rx="10" fill="#183449" stroke="#396b7c"/>
+<rect x="772" y="195" width="104" height="65" rx="10" fill="#183449" stroke="#396b7c"/>
+<rect x="904" y="195" width="104" height="65" rx="10" fill="#183449" stroke="#396b7c"/>
+<rect x="1050" y="195" width="104" height="65" rx="10" fill="#183449" stroke="#396b7c"/>
+<text x="694" y="222" fill="#a2edde" font-size="14" font-weight="700">HEALTH</text><text x="694" y="242" fill="#b8cbda" font-size="11">OPS</text>
+<text x="824" y="222" fill="#a2edde" font-size="14" font-weight="700">SQL</text><text x="824" y="242" fill="#b8cbda" font-size="11">DATABASE</text>
+<text x="956" y="222" fill="#a2edde" font-size="14" font-weight="700">MONGO</text><text x="956" y="242" fill="#b8cbda" font-size="11">LOGS</text>
+<text x="1102" y="222" fill="#a2edde" font-size="14" font-weight="700">PLAYER</text><text x="1102" y="242" fill="#b8cbda" font-size="11">ADMIN</text>
+</g><rect x=".5" y=".5" width="1199" height="319" rx="17.5" fill="none" stroke="#446679" stroke-opacity=".5"/>
+</svg>

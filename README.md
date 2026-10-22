@@ -16,6 +16,8 @@
 
 ## 🚀 Featured Project: Integrated Game Server Management Tool
 
+**📖 [Detailed Engineering Case Study →](./projects/integrated-game-server-admin-tool/README.md)**
+
 운영 환경의 여러 관리 작업을 **하나의 UI로 통합**하기 위해 제작한 서버 종합관리툴입니다.
 첨부된 시연 영상을 바탕으로 확인한 핵심 기능을 정리했습니다.
 
