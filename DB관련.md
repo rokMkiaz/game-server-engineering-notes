@@ -1,3 +1,19 @@
+# DB 기술 학습 기록 · SQL Server / MongoDB 비교
+
+이 문서는 **데이터베이스 특성과 게임 서버 적용 가능성을 학습하기 위해 진행한 AI 질의응답 원본**입니다. 정리되지 않은 대화 기록이므로 구현 사실이나 검증된 기술 판단과 구분해서 읽어주세요.
+
+### 주요 학습 질문
+
+- MySQL, SQL Server, Oracle의 특성과 선택 기준
+- MongoDB와 관계형 DB의 차이
+- MMORPG에서 SQL Server와 MongoDB를 함께 사용하는 경우의 장단점
+- 데이터베이스 제품별 성능·일관성·운영 측면 비교
+
+**실제 프로젝트 사례:** [JSON 배치 저장을 선택한 이유](./case-studies/sql-json-batch-fallback.md) · [게임 서버 종합관리툴](./projects/integrated-game-server-admin-tool/README.md)
+
+<details>
+<summary>원본 질의응답 펼치기 (AI 답변은 별도 사실 검증 필요)</summary>
+
 #### DB관련 질의 응답 기록
 콘텐츠로 건너뛰기
 채팅 기록
@@ -619,3 +635,6 @@ MSSQL에서 Oracle로 옮길지 판단 기준
 
 선택된 파일 없음선택된 파일 없음
 
+
+
+</details>

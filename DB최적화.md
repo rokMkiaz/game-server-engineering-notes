@@ -1,14 +1,14 @@
 
-## RowData관리
+## Row 데이터 관리
 
-### 1.RowData Save를 위한 Tvp(Table-Valued Parameter)구조 
+### 1. Row 데이터 저장을 위한 TVP(Table-Valued Parameter) 검토 
 
 1. Data를 유지보수하는데, 과도한 프로시저 호출은 결국 성능저하를 가져온다.
 2. 과도한 호출을 피하며, 한번에 넘겨 쿼리로 관리하기위해 Tvp구조의 개발이 필요해 졌다.
 
 #### 1-1. 기존 Server내 Tvp호출을 위한 구조 개선
 그동안 Row, Param으로만 호출되던 구조를 개선하는것이 목표다.
-```ruby
+```cpp
 /*------------- CDBBinding.h -------------*/
 #pragma once
 
@@ -138,7 +138,7 @@ bool CStoredProcedure::Execute(void* pParam, void* pRowset)
 기나긴 대화 끝에 결론은 구버전 라이브러리를 사용중이어서 생긴 문제였다. 기존 코드를 업데이트가 불가능한 상황이라, 다른 방법을 찾아봐야 했다.
 #### 1-2. 효율적이며 적합한 쿼리문 제작
 MERGE,Type를 활용한 일괄적인 관리를 지향하였으나, 상단의 문제로 사용을 못 하게 되었다..
-```ruby
+```sql
 -- 1) 먼저 TVP 형식 정의
 CREATE TYPE dbo.InventoryItemType AS TABLE(
   ItemUnique BIGINT,
@@ -185,7 +185,7 @@ END;
 
 #### 2-1. 코드 구현
 기존 데이터를 Json형태로 입력가능하게 바꿔주는 부분이 필요해 졌다. 해당부분 역시 AI를 활용해 컨테이너의 형태로 만드는게 사용하기 쉬워 보였다.
-```ruby
+```cpp
 
 // -----------------------------------------------------------------------------
 // 1) JsonFields<T> primary template: 기본적으로 비어있으므로, 특수화하지 않은 T에 대해서는
@@ -254,7 +254,7 @@ wstring BuildJson(const vector<T>& rows, string pProcName, INT32 KeyVal1, INT32 
 - 초기구조에 추가적으로 Json을 만들다 실패할 시 문서로 만드는 로직을 추가
 - 글자 수는 최대 2만자로 제한, 데이터는 1회 50개의 RowData를 입력가능하게 조정.
 
-```ruby
+```sql
 ALTER PROCEDURE [dbo].[gp_save_pc_inventory]
        @CharUnique INT,
        @JsonItems  NVARCHAR(MAX)
@@ -356,7 +356,7 @@ ALTER PROCEDURE [dbo].[gp_save_pc_inventory]
 
 ### 3. 호출 간소화 작업
 코드
-```ruby
+```cpp
 template <typename T>
 class MemoryPool {
 private:
@@ -478,7 +478,7 @@ void SaveDataInChunks(
 <details>
 <summary>기존 호출 방식</summary>
     
-```ruby
+```cpp
         int i32dx = 0;
 		vector<_PROCEDURE_SAVE_INVENTORY_ROW> buffer;
 		CProcedure_Save_Inventory* pSaveInven = CProcedure_Save_Inventory::GetInstance();
@@ -527,7 +527,7 @@ void SaveDataInChunks(
 <details>
 <summary>개선된 호출 방식</summary>
     
-```ruby
+```cpp
 		SaveDataInChunks<CProcedure_Save_Inventory, _PROCEDURE_SAVE_INVENTORY_PARAM,_PROCEDURE_SAVE_INVENTORY_ROW >
 			(pMsg->m_CharInfo.dwCharunique, pMsg->m_dwAccUnique, MAX_INVENTORY_TOTAL_COUNT, JSON_CHUNK_SIZE_50, "Inventory",
 				[&](_PROCEDURE_SAVE_INVENTORY_ROW& row, INT32 index) -> bool {
@@ -554,7 +554,7 @@ Binary-> RowData로 변경하는 과정에서 속도가 느리니 적용이 불�
 <details>
 <summary>기존 호출</summary>
     
-```ruby
+```cpp
 //Binding
 #include "StdAfx.h"
 #include "DBBinding.h"
@@ -604,7 +604,7 @@ bool CDBBinding::Bind( DBPARAMIOENUM DBParamIO, DBTYPEENUM DBType, unsigned int 
 
 
 ```
-```ruby
+```cpp
 //Connect
 #pragma warning(disable:4996)
 
@@ -949,7 +949,7 @@ bool CDBConnection::ExecuteSQL( WCHAR *wSQLText )
 
 
 ```
-```ruby
+```cpp
 //Procedure
 #include "StdAfx.h"
 #include "NetGlobal.h"
@@ -1390,7 +1390,7 @@ void CStoredProcedure::LogFile_Printf( char * strText, ... )
 <details>
 <summary>개선된 호출</summary>
     
-```ruby
+```cpp
 //Binding
 #include "StdAfx.h"
 #include "DBBinding_v3.h"
@@ -1696,7 +1696,7 @@ void CDBBinding_v3::Reset()
 	}
 }
 ```
-```ruby
+```cpp
 //Connection
 #pragma warning(disable:4996)
 
@@ -2128,7 +2128,7 @@ bool CDBConnection_v3::ExecuteSQL( WCHAR *wSQLText )
 	return bReturn;
 }
 ```
-```ruby
+```cpp
 //Proc
 #include "StdAfx.h"
 #include "NetGlobal.h"
@@ -2544,7 +2544,7 @@ void CStoredProcedure_v3::LogFile_Printf( char * strText, ... )
 <details>
 <summary>개선된 호출 코드</summary>
 	
-```ruby
+```cpp
 struct DCP_SAVE_PC_2 : public SIOCPPacket
 {
 	DCP_SAVE_PC_2()
@@ -2576,7 +2576,7 @@ struct DCP_SAVE_PC_2 : public SIOCPPacket
 ```
 패킷은 기존 19+ 로 되던 패킷을 하나의 패킷으로 송신하게 바꾸었다.
  
-```ruby
+```cpp
 void CWishingList::SaveWishingData(CUnitPC* pPC)
 {
 	if (pPC == NULL)
@@ -2615,7 +2615,7 @@ void CWishingList::SaveWishingData(CUnitPC* pPC, DCP_WISHING_SAVE_DATA& pSavePac
 ```
 기본적으로 Save부분(컨텐츠상 진행에 의한 저장), Loop Save 부분이 나뉘게 되었다. Loop Save의 경우 수많은 데이터를 한번에 저장하기 때문에 별도의 함수가 필요하였다.
 
-```ruby
+```cpp
 void CDBManager::ON_DCM_SAVE_PC_2(int iClient, WORD wExtraHeader, BYTE* pPacket)
 {
 	DCP_SAVE_PC_2* pMsg = (DCP_SAVE_PC_2*)pPacket;

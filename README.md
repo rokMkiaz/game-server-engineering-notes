@@ -1,84 +1,99 @@
 <div align="center">
 
-# 🎮 Game Server Engineering Notes
+# 🎮 Game Server Engineering
 
-**C++ Game Servers · SQL Server Optimization · Live Operations**
+**C++ Backend · SQL Server Performance · Live-Service Operations**
 
-현업에서 직접 겪은 문제와 개선 경험을 기록하는 게임 서버 엔지니어링 포트폴리오입니다.
+게임 서버를 운영하며 마주친 문제를 재현하고, 구조적 원인을 분석하고, 실제 코드와 도구를 개선해 온 기록입니다.
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-202c3d?style=flat-square&logo=flask&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+
+[**대표 프로젝트**](#-featured-work) · [**기술 사례**](#-case-studies) · [**기술 기록**](#-engineering-notes)
 
 </div>
 
 ---
 
-## 🚀 Featured Project: Integrated Game Server Management Tool
+## 🚀 Featured Work
 
-**📖 [Detailed Engineering Case Study →](./projects/integrated-game-server-admin-tool/README.md)**
+<a href="./projects/integrated-game-server-admin-tool/README.md">
+<img src="./projects/integrated-game-server-admin-tool/assets/cover.svg" width="100%" alt="Integrated game server operations console project"/>
+</a>
 
-운영 환경의 여러 관리 작업을 **하나의 UI로 통합**하기 위해 제작한 서버 종합관리툴입니다.
-첨부된 시연 영상을 바탕으로 확인한 핵심 기능을 정리했습니다.
+### [게임 서버 종합관리툴 — 상세 기술 소개 →](./projects/integrated-game-server-admin-tool/README.md)
 
-| Feature | Description |
+**목표:** 기존 서버와 데이터 저장 구조를 유지하면서 분산된 점검·관리 작업을 하나의 웹 운영 콘솔로 통합했습니다.
+
+| 운영 영역 | 직접 구현한 주요 기능 |
 | :--- | :--- |
-| 🩺 **Comprehensive Check** | 여러 운영 대상과 관리 항목을 한 화면에서 종합 점검 |
-| 🗃️ **SQL Server Management** | SQL Server 관련 데이터 조회와 관리 작업 |
-| 🍃 **MongoDB Management** | MongoDB 연결, 데이터 조회 및 관리 화면 |
-| 👤 **Player Administration** | 유저 검색, 상세 정보 확인 및 관리 기능 |
+| **서버 점검·제어** | 환경별 상태 조회, 점검 체크리스트, 운영 명령 연동 |
+| **SQL Server** | 용량/인덱스 관리, 백업, 환경 간 스키마·프로시저 비교 |
+| **MongoDB** | 로그 검색·필터, 별칭, 인덱스 관리 |
+| **유저·게임 데이터** | 계정·캐릭터·인벤토리 조회/관리, 바이너리 데이터 처리 및 규칙 검증 |
 
-### 🎬 Animated previews
+**설계에서 중요했던 세 가지 문제**
 
-공개에 필요한 보안을 고려해 영상 일부를 **축약·저해상도·블러 처리**했습니다.
+1. **기존 Binary DB와의 호환성:** 저장 성능·서버 호환성 제약 때문에 데이터를 Row 구조로 전면 전환하지 않고, 관리 계층에서 디코딩·검증·인코딩하는 방식을 선택했습니다.
+2. **접근 경로 통제:** 여러 DB에 직접 연결하는 작업을 줄이고, 운영 환경 선택과 기능별 권한을 갖춘 관리 흐름을 구성했습니다. 관리 UI의 통합 자체가 네트워크 보안을 보장하지는 않습니다.
+3. **점진적인 자동화:** 실제 운영 과정에서 필요한 기능을 발견할 때마다 추가했습니다. AI는 반복적인 코드 작성과 연동 구현을 돕는 도구로 활용했습니다.
 
-<table>
-<tr>
-<td width="50%" align="center"><strong>SQL Server Management</strong><br/><img src="./assets/sql-server.webp" width="100%" alt="SQL Server management preview"/></td>
-<td width="50%" align="center"><strong>MongoDB Management</strong><br/><img src="./assets/mongodb.webp" width="100%" alt="MongoDB management preview"/></td>
-</tr>
-</table>
+[**아키텍처, 기능별 데모, 설계 이유와 한계 살펴보기 →**](./projects/integrated-game-server-admin-tool/README.md)
 
-**Other recorded demonstrations:** Comprehensive Health Check / Player Administration.
+---
 
-> 원본 4개 MP4 영상은 운영 데이터 및 개인정보 노출 여부를 검토하기 전까지 공개하지 않습니다. 전체 영상은 마스킹 후 별도의 공개 영상 링크로 제공하는 것이 안전합니다.
+## 🔍 Case Studies
 
-### Engineering value
+기능 목록보다 **문제의 배경, 검토한 대안, 검증 결과와 남은 한계**를 중심으로 정리한 사례입니다.
 
-- **Centralized operations:** 분산된 업무를 통합 UI로 관리
-- **Database workflows:** SQL Server와 MongoDB 작업을 한 도구에서 수행
-- **Practical productivity:** 운영 점검 및 유저 관리의 반복 업무 간소화 지향
-- **Security awareness:** 상용 시스템과 이용자 정보가 포함될 수 있는 시연 자료를 신중하게 공개
+| Case Study | 핵심 내용 |
+| :--- | :--- |
+| **[Load/Save 패킷 통합과 부하 테스트](./case-studies/load-save-packet-consolidation.md)** | 저장 패킷 **21개 → 3개**로 통합. 내부 더미 테스트에서 병목 발생 구간 변화를 관찰했으며 재현 조건과 한계를 함께 기록 |
+| **[TVP 제약을 우회한 JSON 배치 처리](./case-studies/sql-json-batch-fallback.md)** | 기존 OLE DB 연동 라이브러리의 TVP 활용 제약을 확인하고, JSON 기반 일괄 저장 흐름을 설계한 과정 |
+| **[게임 서버 종합관리툴 설계](./projects/integrated-game-server-admin-tool/README.md)** | Binary 데이터 관리, 다중 DB 연동, 권한 관리, AI-assisted 개발을 통한 운영 도구 확장 |
+
+> 위 실험의 측정값은 각 기록의 당시 환경과 조건에서 관찰한 결과이며, 일반적인 서비스 성능 개선율로 단정하지 않습니다.
 
 ---
 
 ## 📚 Engineering Notes
 
-| Topic | Notes |
-| :--- | :--- |
-| Database performance | [DB최적화.md](./DB최적화.md) |
-| SQL Server development | [DB관련.md](./DB관련.md) |
-| AI-assisted tool development | [AI를 사용한 툴 제작.md](./AI를%20사용한%20툴%20제작.md) |
-| Legacy code and improvements | [개선된 사항.md](./개선된%20사항.md) |
-| AI development notes | [AI코드 개발.md](./AI코드%20개발.md) |
-| Technical development reports | [DevReport](./DevReport) |
+실제 개발 과정의 시행착오와 코드 비교를 포함한 **원본 작업 기록**입니다. 위 Case Study를 먼저 읽고, 근거와 구현 맥락이 필요할 때 참고하는 순서를 권장합니다.
 
-**Main themes:** Stored procedures, excessive DB calls, batch processing, TVP, MERGE, query tuning, server debugging, legacy maintenance, internal tooling, and live-service operations.
+| 분야 | 작업 기록 |
+| :--- | :--- |
+| DB 호출·저장 구조 | [DB최적화.md](./DB최적화.md) |
+| 서버 코드·레거시 개선 | [개선된 사항.md](./개선된%20사항.md) |
+| 업무 도구 개발 | [AI를 사용한 툴 제작.md](./AI를%20사용한%20툴%20제작.md) |
+| AI 활용 개발 실험 | [AI코드 개발.md](./AI코드%20개발.md) |
+| 성능 분석 원본 | [2025-09-25 Load 개선 기록](./DevReport/2025_09_25_Load개선.md) |
+| 학습용 질의응답 | [DB관련.md](./DB관련.md) |
+
+<details>
+<summary>기타 참고 자료</summary>
+
+- [개발 보고서 모음](./DevReport)
+- [SQL 학습·관리 스크립트](./쿼리)
+
+스크립트는 학습/참고 기록이며 실제 DB에서 사용하기 전 대상·영향 범위를 재검토해야 합니다.
+
+</details>
 
 ---
 
 ## 🧭 Engineering Approach
 
-```text
-Observe → Reproduce → Measure → Improve → Verify → Document
-```
+**Observe → Reproduce → Measure → Improve → Verify → Document**
 
-기술적인 해결책만큼이나 **재현, 검증, 운영 안정성, 유지보수성**을 중요하게 생각합니다.
+실제 운영의 문제를 분석할 때는 먼저 재현 조건과 근거를 찾고, 변경 후 동작을 검증합니다. 문제가 해결되지 않은 부분이나 충분히 측정하지 못한 부분도 구분해서 기록합니다.
 
-<sub>Commercial server source code and unredacted operational recordings are not published here. Project details describe demonstrated capabilities rather than unverified implementation claims.</sub>
+<sub>공개 문서는 기술적 접근과 학습·개선 기록을 설명하기 위한 것입니다. 상용 환경의 구성·접속 정보 및 원본 운영 영상은 별도로 공유하지 않습니다.</sub>
 
 <div align="center">
 
-**[← GitHub Profile](https://github.com/rokMkiaz)**
+[← GitHub Profile](https://github.com/rokMkiaz)
 
 </div>

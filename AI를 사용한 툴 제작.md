@@ -19,7 +19,7 @@
 <summary>코드/펼치기</summary>
 
   
-```ruby
+```csharp
 using System;
 using System.Linq;
 
@@ -104,7 +104,7 @@ namespace ProbabilityChecker
 
 
 
-### 2.확률 검사 툴
+### 2. 확률 검사 툴
 기획자들의 실수를 줄여줄 툴을 만들었다. 실제로 액셀에 있는 기능이지만, 여전히 .csv만 다뤄 힘든 팀원들을 위하여 만들어주었다.
 
 <img width="581" height="468" alt="image" src="https://github.com/user-attachments/assets/dfe69039-3356-45cd-aeb1-f0a0a9fef126" />
@@ -116,7 +116,7 @@ namespace ProbabilityChecker
 <summary>코드/펼치기</summary>
 
   
-```ruby
+```csharp
 using System;
 using System.IO;
 using System.Linq;
@@ -256,7 +256,7 @@ namespace CsvGroupProbabilityChecker
 <summary>코드/펼치기</summary>
 
   
-```ruby
+```csharp
 using System;
 using System.IO;
 using System.Linq;
@@ -729,13 +729,13 @@ namespace CsvGroupProbabilityChecker
 완성된 코드에서는 간단한 파일명 입력, 그룹선택, 전체적인 중복인덱스를 검사할 수 있는 기능을 추가했으며, 출력파일들을 보기 좋게 수정하였다.
 <img width="1101" height="665" alt="image" src="https://github.com/user-attachments/assets/ad62fac3-e3d1-452b-a944-0832a07fd46f" />
 
-### 3.자동 SVN 업데이트 툴
+### 3. 자동 SVN 업데이트 툴
 테스트 서버에서 문서파일 교체에 대해 자동으로 SVN업데이트, Data Convert, ServerStart가 가능하도록 bat파일을 만들어 보았다. 해당 bat파일을 실행할 수 있도록 이름과 경로를 지정하였다.
 
 <details>
 <summary>코드/펼치기</summary>
 
-```ruby
+```bat
 ::경로 저장
 for %%I in ("%~dp0..") do set "PARENT=%%~fI"
 
@@ -819,7 +819,7 @@ exit /b
 <details>
 <summary>코드/펼치기</summary>
 	
-```ruby
+```cpp
 #pragma once
 #include "Singleton.h"
 #include <WinSock2.h> // 반드시 포함! (winsock 라이브러리 1순위 충돌방지를 위해 먼저 포함 필요)
@@ -917,7 +917,7 @@ private:
 
 ```
 
-```ruby
+```cpp
 
 #include "StdAfx.h"
 #include "GuiManager.h"

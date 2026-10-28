@@ -22,7 +22,7 @@ SuperClaude의 가장 혁신적인 기능은, 이른바 "일반형 AI의 한계"
 이는 하나의 제너럴리스트 AI 대신, 필요에 따라 호출 가능한 전문가 팀을 갖는 것과 같은 경험을 제공합니다.
 
 실제 사용 결과, 다양한 의견을 제시하며 사용자와 합의를 유도하고, 그에 따라 코드의 품질이 향상되는 효과를 확인할 수 있었습니다.
-L 사용결과 여러가지 의견을 제시하고 동의 여하에 따라 코드의 질이 상승하는 것을 경험 하였다.
+사용 결과, 여러 의견을 비교하고 적용 여부를 검토하는 과정이 코드 품질 개선에 도움이 되었습니다.
 
 ### 3.응용 및 적용
 #### 3.1 밸런스 인포 추출
@@ -50,7 +50,7 @@ DB개발을 지속하며 코드들이 불필요하게 반복이 되는것이 느
 <summary>기존코드</summary>
 
   
-```ruby
+```cpp
 //창고
 	{
 		INT32 i32dx = 0;
@@ -103,7 +103,7 @@ while문, GetInstance, 동적할당 등 프로시저를 호출할 대 중복되�
 
 
 * 클로드코드를 활용한 함수 템플릿 작성
-```ruby
+```cpp
 template<typename ProcedureType, typename ParamType,  typename RowType >
 void SaveDataInChunks(DWORD dwCharunique, DWORD dwAccunique, INT32 maxCount, INT32 chunkSize, const char* jsonTypeName,
 	/*데이터 저장조건*/function<bool(RowType&, INT32)>dataProcessor,
@@ -154,7 +154,7 @@ void SaveDataInChunks(DWORD dwCharunique, DWORD dwAccunique, INT32 maxCount, INT
 중복되는 부분들은 전부 묶었으며, 함수 포인터를 사용해 개별적으로 다른 부분을 반영할 수 있게 작성되었다.
 
 * 기존 코드 적용사례
-```ruby
+```cpp
 //창고
                  SaveDataInChunks<CProcedure_Save_Storage, _PROCEDURE_SAVE_STORAGE_PARAM, _PROCEDURE_SAVE_STORAGE_ROW >
 			(0, pMsg->m_dwAccUnique, MAX_CHANNEL_COMMON_STORAGE_COUNT, JSON_CHUNK_SIZE_50, "Avatar",
@@ -187,7 +187,7 @@ void SaveDataInChunks(DWORD dwCharunique, DWORD dwAccunique, INT32 maxCount, INT
 <details>
 <summary>수정 코드</summary>
 
-```ruby
+```cpp
 // Binary Heap 구현
 Astar::NodeHeap::NodeHeap(int capacity) {
 	m_capacity = capacity;
@@ -365,7 +365,7 @@ void CFindPath::AddCompressedSegment(DWORD startPos, int direction, int length) 
 }
 ```
 사용 방법은 하기와 같다
-```ruby
+```cpp
 // v2: 메인 길찾기 함수 (기존 함수의 개선된 버전)
 int Astar::FindPath_v2(PathOrder* pOrder)
 {
@@ -899,7 +899,7 @@ void CFindPath::SmoothPath_v2() {
 <details>
 <summary>기존 코드</summary>
 	
-```ruby
+```cpp
 
 /// <summary>
 /// 조선협객전2 공격할 때
@@ -2881,7 +2881,7 @@ INT32 CMath::AttackTarget_Damage_PCCLONE(CUnit* pUnit, CUnit* pTarget, BOOL& bCr
 <details>
 <summary>수정 코드</summary>
 
-```ruby
+```cpp
 // ===============================================================================
 // AttackTarget_1003B2M의 개선된 대체 함수
 // 유지보수성과 가독성을 향상시킨 버전
